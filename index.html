@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+
+  <main>
+    <header>
+    <img src="/images/logo.svg" alt="Game Logo" class="logo">
+
+    <div class="score-container">
+      <p>SCORE</p>
+      <p class="score"></p>
+    </div>
+  </header> 
+
+
+    <section class="select">
+      <div class="triangle">
+
+     <div  class="paper">
+           <img src="/images/icon-paper.svg" alt="Paper">
+        </div>
+       
+      <div class="scissors">
+        <img src="/images/icon-scissors.svg" alt="Scissors">
+      </div>
+        
+      <div class="rock">
+        <img src="/images/icon-rock.svg" alt="Rock">
+      </div>
+        
+      </div>
+    </section>
+
+    <section class="picked close">
+      <div class="selected-and-outcome">
+        <div class="your-outcome">
+
+          <div>
+            <img src="">
+         </div>
+
+          <p>You Picked</p>
+        </div>
+
+        <div class="outcome">
+          <h1></h1>
+          <button class="cant-click">PLAY AGAIN</button>
+        </div>
+
+        <div class="computers-outcome">
+
+          <div>
+            <img>
+         </div>
+
+          <p>The House Picked</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="rules-overlay">
+      <h1>Rules</h1>
+
+      <img src="/images/image-rules.svg" alt="rules of the Game" class="game-rules-image">
+
+      <img src="/images/icon-close.svg" alt="close rules" class="close-rules">
+    </div>
+
+    <button class="view-rules">Rules</button>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

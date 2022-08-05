@@ -1,0 +1,592 @@
+*,*::before, *::after{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+:root{
+--scissorsGradient: hsl(39, 89%, 49%), hsl(40, 84%, 53%);
+--paperGradient: hsl(230, 89%, 62%), hsl(230, 89%, 65%);
+
+--rockGradient: hsl(349, 71%, 52%), hsl(349, 70%, 56%);
+--lizardGradient: hsl(261, 73%, 60%), hsl(261, 72%, 63%);
+--Cyan: hsl(189, 59%, 53%), hsl(189, 58%, 57%);
+
+--darkText: hsl(229, 25%, 31%);
+--scoreText: hsl(229, 64%, 46%);
+--headerOutline: hsl(217, 16%, 45%);
+
+--radialGradientBody: hsl(214, 47%, 23%), hsl(237, 49%, 15%);
+}
+
+html{
+    font-size: 62.5%;
+    font-family: barwol;
+}
+
+@font-face {
+    font-family: barwol;
+    src: url('/font/barwol/barlow-condensed.regular.ttf');
+}
+
+@font-face {
+    font-family: barwol-bold;
+    src: url('/font/barwol/barlow-condensed.bold.ttf');
+}
+
+/* styling for the header*/
+main{
+    padding: 3rem 0rem;
+    min-height: 100vh;
+    max-width: 100%;
+    background-image:linear-gradient(var(--radialGradientBody)) ;
+}
+
+header{
+    border:2px solid var(--headerOutline);
+    border-radius: .7rem;
+    max-width: 80vw;
+    margin:0 auto 10rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-border-radius: .7rem;
+    -moz-border-radius: .7rem;
+    -ms-border-radius: .7rem;
+    -o-border-radius: .7rem;
+}
+
+header .logo{
+    max-width: 9rem;
+}
+
+header .score-container{
+    background-color: white;
+    max-width: fit-content;
+    padding:.7rem 2.7rem;
+    display: grid;
+    border-radius: .5rem;
+    place-items: center;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+
+header .score-container p{
+    color: var(--headerOutline);
+    font-size: 1.2rem;
+    letter-spacing: .15rem;
+    font-weight: 700;
+    margin: 0 0 -.5rem;
+}
+
+header .score-container p.score{
+    color: var(--darkText);
+    font-size: 5rem;
+    font-weight: 500;
+    font-family: barwol-bold;
+}
+
+
+/* styling for the pick side*/
+.select.close{
+    display:none;
+}
+
+.select .triangle{
+    width: 22rem;
+    height: 20rem;
+    background-image: url('/images/bg-triangle.svg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    margin:10rem auto;
+}
+
+
+.paper,
+.scissors,
+.rock{
+    background-color: white;
+    width: 10rem;
+    height: 10rem;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    position: absolute;
+    transition: .1s ease-in-out;
+}
+
+.paper{
+    top:-4rem;
+    left:-3rem;
+    border: 12px solid hsl(230, 89%, 65%);
+    box-shadow: 0 .3rem inset rgba(0, 0, 0, 0.267);
+}
+
+.paper img{
+    transform: translate(-.5rem, -.5rem);
+    -webkit-transform: translate(-.5rem, -.5rem);
+    -moz-transform: translate(-.5rem, -.5rem);
+    -ms-transform: translate(-.5rem, -.5rem);
+    -o-transform: translate(-.5rem, -.5rem);
+    width: 4rem;
+}
+
+
+.scissors{
+    top:-4rem;
+    right:-3rem;
+    border: 12px solid hsl(40, 84%, 53%);
+    box-shadow: 0 .3rem inset rgba(0, 0, 0, 0.267);
+}
+
+.scissors img{
+    transform: translate(-.5rem, -.5rem);
+    -webkit-transform: translate(-.5rem, -.5rem);
+    -moz-transform: translate(-.5rem, -.5rem);
+    -ms-transform: translate(-.5rem, -.5rem);
+    -o-transform: translate(-.5rem, -.5rem);
+    width: 4rem;
+}
+
+
+.rock{
+    bottom:0rem;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    -webkit-transform: translate(-50%, 10%);
+    -moz-transform: translate(-50%, 10%);
+    -ms-transform: translate(-50%, 10%);
+    -o-transform: translate(-50%, 10%);
+    border: 12px solid hsl(349, 70%, 56%);
+   box-shadow: 0 .3rem inset rgba(0, 0, 0, 0.267);
+}
+
+.rock img{
+    transform: translate(-.5rem, -.1rem);
+    -webkit-transform: translate(-.5rem, -.1rem);
+    -moz-transform: translate(-.5rem, -.1rem);
+    -ms-transform: translate(-.5rem, -.1rem);
+    -o-transform: translate(-.5rem, -.1rem);
+    width: 4rem;
+}
+
+/* styling for the picked side  */
+.picked{
+    max-width: 70vw;
+    margin: 8rem auto;
+    height: 30rem;
+}
+
+.picked.close{
+    display:none;
+}
+
+.picked .selected-and-outcome{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+}
+
+.picked .selected-and-outcome .your-outcome,
+.picked .selected-and-outcome .computers-outcome{
+    width: fit-content;
+}
+
+.picked .selected-and-outcome div.winner{
+    box-shadow:
+     0 0 0 1rem hsla(228, 25%, 31%, 0.377), 
+    0 0 0 3rem  hsla(217, 16%, 45%, 0.075),
+    0 0 0 5rem hsla(228, 25%, 31%, 0.123),
+    0 .3rem inset rgba(0, 0, 0, 0.267)
+    ;
+    position: relative;
+}
+
+.picked .selected-and-outcome .your-outcome .paper,
+.picked .selected-and-outcome .computers-outcome .paper{
+    position: static;
+}
+
+.picked .selected-and-outcome .your-outcome .scissors,
+.picked .selected-and-outcome .computers-outcome .scissors{
+    position: static;
+}
+
+.picked .selected-and-outcome .your-outcome .rock,
+.picked .selected-and-outcome .computers-outcome .rock{
+    position: static;
+    bottom:0rem;
+    left: 0rem;
+    transform: translate(0rem, 0rem);
+    -webkit-transform: translate(0rem, 0rem);
+    -moz-transform: translate(0rem, 0rem);
+    -ms-transform: translate(0rem, 0rem);
+    -o-transform: translate(0rem, 0rem);
+}
+
+.picked .selected-and-outcome .your-outcome p{
+    color: white;
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 1rem 0 0;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+}
+
+.picked .selected-and-outcome .outcome{
+    grid-column: 1/-1;
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
+}
+
+.picked .selected-and-outcome .outcome h1{
+    font-size: 5rem;
+    font-family: barwol-bold;
+    font-weight: 100;
+    color: white;
+    letter-spacing: .3rem;
+    margin: 0 0 2rem;
+    text-align: center;
+}
+
+.picked .selected-and-outcome .outcome button{
+    display: block;
+    padding:1rem 2rem;
+    width: 100%;
+    margin: 0 auto 0;
+    background-color: white;
+    border: none;
+    color: var(--darkText);
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+    font-weight: 600;
+    font-family: barwol;
+    letter-spacing: .2rem;
+    font-size: 1.5rem;
+}
+
+.picked .selected-and-outcome .outcome button.cant-click{
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.295);
+}
+
+.picked .selected-and-outcome .computers-outcome{
+    max-width: fit-content;
+    grid-column-end: -1;
+}
+
+.picked .selected-and-outcome .computers-outcome .scissors{
+    position: static;
+}
+
+.picked .selected-and-outcome .computers-outcome p{
+    color: white;
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 1rem 0 0;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+}
+
+/* styling for the rules side*/
+.rules-overlay{
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: white;
+    min-height: 100vh;
+    min-width: 100%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 5rem 2rem 5rem;
+}
+
+.rules-overlay h1{
+    font-size: 4rem;
+    color: var(--darkText);
+}
+
+.rules-overlay .game-rules-image{
+    max-width: 90%;
+    margin: auto;
+}
+
+.rules-overlay .close-rules{
+    transition: .2s ease-in;
+    -webkit-transition: .2s ease-in;
+    -moz-transition: .2s ease-in;
+    -ms-transition: .2s ease-in;
+    -o-transition: .2s ease-in;
+}
+
+.view-rules{
+    display: block;
+    background-color: transparent;
+    border:1px solid white;
+    color:white;
+    font-family: barwol;
+    margin: auto;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+    width:10rem;
+    font-size: 1.8rem;
+    padding: .5rem 2rem;
+    letter-spacing: .2rem;
+    transition: .2s ease-in;
+}
+
+
+
+/* ------------------------------------ */
+
+.rules-overlay.close{
+    animation: close 1s ease-in-out;
+    -webkit-animation: close 1s ease-in-out;
+}
+@keyframes close {
+    from{
+        top:0;
+        opacity: 1;
+    }
+
+    to{
+        top:100rem;
+        opacity: 0;
+    }
+}
+
+.rules-overlay.open{
+   animation: open 1s ease-in-out;
+   -webkit-animation: open 1s ease-in-out;
+}
+
+@keyframes open {
+    from{
+        top:100rem;
+        opacity: 0;
+    }
+
+    to{
+        top:0rem;
+        opacity: 1;
+    }
+}
+
+/* styling for tablets and pcs*/
+@media screen and (min-width:600px) {
+    
+    /* styling for the header*/
+    header{
+        max-width: 55rem;
+    }
+
+
+    /* styling for the picked side  */
+    .picked{
+        max-width: 65rem;
+        margin-bottom: 1rem;
+    }
+
+    .picked .selected-and-outcome{
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        margin: 13rem 0 0;
+    }
+
+    .picked .selected-and-outcome .your-outcome,
+    .picked .selected-and-outcome .computers-outcome{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+
+    .picked .selected-and-outcome .your-outcome p,
+    .picked .selected-and-outcome .computers-outcome p{
+        margin: 0 0 2rem;
+    }
+
+    .picked .selected-and-outcome .your-outcome div,
+    .picked .selected-and-outcome .computers-outcome div{
+        width:17rem;
+        height:17rem;
+        border-width: 16px;
+        box-shadow: 0 .5rem inset rgba(0, 0, 0, 0.267);
+    }
+
+    .picked .selected-and-outcome .your-outcome div img,
+    .picked .selected-and-outcome .computers-outcome div img{
+        width: 7rem;
+        margin-top: 1rem;
+    }
+
+    .picked .selected-and-outcome div.winner{
+        box-shadow:
+         0 0 0 3rem hsla(228, 25%, 31%, 0.377), 
+        0 0 0 6rem  hsla(217, 16%, 45%, 0.075),
+        0 0 0 9rem hsla(228, 25%, 31%, 0.123),
+        0 .5rem inset rgba(0, 0, 0, 0.267)
+        ;
+    }
+
+    .picked .selected-and-outcome .outcome{
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: center;
+        align-self: center;
+    }
+
+    .picked .selected-and-outcome .outcome h1{
+        font-size: 3.5rem;
+    }
+
+    /* styling for the rules overlay*/
+
+    .rules-overlay{
+        min-width: 30rem;
+        min-height:30rem;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        padding: 2rem;
+        border-radius: .5rem;
+        -webkit-border-radius: .5rem;
+        -moz-border-radius: .5rem;
+        -ms-border-radius: .5rem;
+        -o-border-radius: .5rem;
+        display: grid;
+        grid-template-columns: 5rem 1fr 5rem;
+        grid-template-rows: 3rem 1fr;
+        row-gap: 2rem;
+        position: fixed;
+        box-shadow: 0 0 0 400rem rgba(0, 0, 0, 0.411);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+}
+
+    .rules-overlay.close{
+        animation: close 1s ease-in-out;
+        -webkit-animation: close 1s ease-in-out;
+    }
+
+    @keyframes close {
+        from{
+            top:50%;
+            opacity: 1;
+        }
+    
+        to{
+            top:100rem;
+            opacity: 0;
+        }
+    }
+    
+    .rules-overlay.open{
+       animation: open 1s ease-in-out;
+       -webkit-animation: open 1s ease-in-out;
+    }
+    
+    @keyframes open {
+        from{
+            top:100rem;
+            opacity: 0;
+        }
+    
+        to{
+            top:50%;
+            opacity: 1;
+        }
+    }
+
+     
+
+    .rules-overlay h1{
+        width: 100%;
+        text-align: left;
+        font-size: 2.5rem;
+        position: relative;
+    }
+
+    .rules-overlay .game-rules-image{
+        max-width: 23rem;
+        grid-row: 2;
+        grid-column: 1/-1;
+        justify-self: center;
+    }
+
+    .rules-overlay .close-rules{
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+
+    .view-rules{
+        margin-right: 2rem;
+    }
+}
+
+/* hover styles*/
+.picked .selected-and-outcome .outcome button:hover{
+    cursor: pointer;
+    color: hsl(349, 70%, 56%);
+}
+
+.rules-overlay .close-rules:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    cursor: pointer;
+}
+
+.select .paper:hover,
+.select .scissors:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    filter: drop-shadow(0 0 2rem hsla(240, 46%, 5%, 0.356));
+    -webkit-filter: drop-shadow(0 0 2rem hsla(240, 46%, 5%, 0.356));
+}
+
+.select .rock:hover{
+    cursor: pointer;
+    transform:translate(-5rem, 1rem) scale(1.1);
+    -webkit-transform:translate(-5rem, 1rem) scale(1.1);
+    -moz-transform:translate(-5rem, 1rem) scale(1.1);
+    -ms-transform:translate(-5rem, 1rem) scale(1.1);
+    -o-transform:translate(-5rem, 1rem) scale(1.1);
+    filter: drop-shadow(0 0 2rem hsla(240, 46%, 5%, 0.356));
+    -webkit-filter: drop-shadow(0 0 2rem hsla(240, 46%, 5%, 0.356));
+}
+
+.view-rules:hover{
+    color: var(--darkText);
+    background-color: white;
+    cursor: pointer;
+}
